@@ -53,7 +53,7 @@ def get_cough(fs: int, x: list):
     if is_cough:
         data = segregate_cough(x, fs)
         data.update({'cough_prob':prob})
-        return
+        return data
     else:
         return {'segments':[], 'cough_prob': prob}
 
