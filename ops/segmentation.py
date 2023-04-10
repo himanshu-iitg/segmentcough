@@ -56,6 +56,8 @@ def segment_cough(x,fs, cough_padding=0.2,min_cough_len=0.2, th_l_multiplier = 0
                 below_th_counter = 0
         else:
             # start cough
+            # print(sample)
+            # print(seg_th_h)
             if sample>seg_th_h:
                 cough_start = i-padding if (i-padding >=0) else 0
                 cough_in_progress = True

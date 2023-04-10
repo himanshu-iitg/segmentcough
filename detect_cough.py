@@ -4,6 +4,9 @@
 
 import os
 import sys
+
+import librosa
+
 sys.path.append(os.path.abspath('./ops'))
 sys.path.append(os.path.abspath('./ops/cough_detection'))
 from ops.feature_class import features
@@ -27,7 +30,9 @@ def main(input_file):
     scaler = pickle.load(open(os.path.join('./models',
         'cough_classification_scaler'), 'rb'))
 
-    fs, x = wavfile.read(input_file)
+    # fs, x = wavfile.read(input_file)
+    x, fs = librosa.load(input_file, sr=None)
+    x = (x * 32767).astype(int)
     prob = classify_cough(x, fs, model, scaler)
     print(f"{input_file} has probability of cough: {prob}")
     return prob
